@@ -1,0 +1,8 @@
+Import('env')
+
+SConscript(
+    exports = ["env"],
+    dirs = [
+        "simple",
+    ]
+)
