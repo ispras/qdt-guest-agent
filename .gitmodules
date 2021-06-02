@@ -1,0 +1,6 @@
+[submodule "libs/libserialport"]
+	path = libs/libserialport
+	url = git://sigrok.org/libserialport
+[submodule "site_tools/pkg-config"]
+	path = site_scons/site_tools/pkg-config
+	url = https://github.com/manuelnaranjo/scons-pkg-config.git

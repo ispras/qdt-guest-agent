@@ -4,5 +4,6 @@ SConscript(
     exports = ["env"],
     dirs = [
         "simple",
+        "serial",
     ]
 )

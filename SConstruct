@@ -2,7 +2,17 @@ from os import (
     environ,
 )
 
-env = DefaultEnvironment()
+base_env = DefaultEnvironment().Clone(
+    tools = [
+        "pkg-config",
+    ],
+    LINKFLAGS = ["-static-libgcc"]
+)
+base_env.Append(ENV = dict(
+    PATH = environ["PATH"],
+))
+
+env = base_env.Clone()
 
 SConscript(
     variant_dir = 'build/host',
@@ -15,7 +25,7 @@ SConscript(
 
 win32_prefix = "i686-w64-mingw32-"
 
-env = Environment(
+env = base_env.Clone(
     CC = win32_prefix + "gcc",
     CXX = win32_prefix + "g++",
     LD = win32_prefix + "ld",
@@ -23,7 +33,6 @@ env = Environment(
     STRIP = win32_prefix +"strip",
     PROGSUFFIX = ".exe",
 )
-env.Append(ENV = {"PATH" : environ["PATH"]})
 
 SConscript(
     variant_dir = 'build/win32',
