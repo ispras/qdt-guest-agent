@@ -9,33 +9,31 @@ base_env.Append(ENV = dict(
     PATH = environ["PATH"],
 ))
 
-env = base_env.Clone()
+def target(arch, name, **kw):
+    global env
 
-SConscript(
-    variant_dir = 'build/host',
-    duplicate = False,
-    exports = ["env"],
-    dirs = [
-        "src",
-    ]
-)
+    prefix = arch + "-"
 
-win32_prefix = "i686-w64-mingw32-"
+    env = base_env.Clone(
+        CC = prefix + "gcc",
+        CXX = prefix + "g++",
+        LD = prefix + "ld",
+        AR = prefix + "ar",
+        STRIP = prefix +"strip",
+        **kw
+    )
 
-env = base_env.Clone(
-    CC = win32_prefix + "gcc",
-    CXX = win32_prefix + "g++",
-    LD = win32_prefix + "ld",
-    AR = win32_prefix + "ar",
-    STRIP = win32_prefix +"strip",
-    PROGSUFFIX = ".exe",
-)
+    SConscript(
+        variant_dir = "build/" + name,
+        duplicate = False,
+        exports = ["env"],
+        dirs = [
+            "src",
+        ]
+    )
 
-SConscript(
-    variant_dir = 'build/win32',
-    duplicate = False,
-    exports = ["env"],
-    dirs = [
-        "src",
-    ]
+target("x86_64-linux-gnu", "linux64")
+
+target("i686-w64-mingw32", "win32",
+    PROGSUFFIX = ".exe"
 )
