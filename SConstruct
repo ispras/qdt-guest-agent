@@ -3,9 +3,6 @@ from os import (
 )
 
 base_env = DefaultEnvironment().Clone(
-    tools = [
-        "pkg-config",
-    ],
     LINKFLAGS = ["-static-libgcc"]
 )
 base_env.Append(ENV = dict(
