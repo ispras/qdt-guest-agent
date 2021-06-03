@@ -2,8 +2,6 @@
 
 ## Prerequisites
 
-Needed:
-
   - SCons build system.
   - Tool chains for cross-compilation of C/C++ for Windows 32-bit
     (e.g. MinGW) and Linux (both x86_64 and i686).
