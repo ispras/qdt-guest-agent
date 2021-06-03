@@ -1,5 +1,5 @@
 [submodule "libs/libserialport"]
-	path = libs/libserialport
+	path = src/libs/libserialport
 	url = git://sigrok.org/libserialport
 [submodule "site_tools/pkg-config"]
 	path = site_scons/site_tools/pkg-config
