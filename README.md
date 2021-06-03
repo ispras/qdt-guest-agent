@@ -4,15 +4,16 @@
 
 Needed:
 
-  - scons build system.
-  - A tool chain for cross-compilation of C/C++ for Windows 32-bit
-    (e.g. MinGW).
+  - SCons build system.
+  - Tool chains for cross-compilation of C/C++ for Windows 32-bit
+    (e.g. MinGW) and Linux (both x86_64 and i686).
 
 ### Ubuntu Linux
 
 #### 18.04
 
 ```bash
-sudo apt install mingw-w64
+sudo apt install \
+    mingw-w64 \
+    gcc-i686-linux-gnu g++-i686-linux-gnu binutils-i686-linux-gnu
 ```
-
