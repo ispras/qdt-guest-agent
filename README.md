@@ -14,6 +14,7 @@ Needed:
 
 ```bash
 sudo apt install \
+    scons \
     mingw-w64 \
     gcc-i686-linux-gnu g++-i686-linux-gnu binutils-i686-linux-gnu
 ```
