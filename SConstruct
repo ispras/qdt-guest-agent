@@ -32,7 +32,9 @@ def target(arch, name, **kw):
         ]
     )
 
-target("x86_64-linux-gnu", "linux64")
+target("x86_64-linux-gnu", "linux-x86_64")
+
+target("i686-linux-gnu", "linux-i686")
 
 target("i686-w64-mingw32", "win32",
     PROGSUFFIX = ".exe"
