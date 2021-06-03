@@ -1,16 +1,7 @@
-Import('env')
+Import("env")
+Import("libserialport")
 
 env = env.Clone()
-env.Append(ENV = dict(
-    PKG_CONFIG_PATH = env.Dir(
-        "../libs/libserialport/install/lib/pkgconfig"
-    ).abspath
-))
-
-env.PkgConfigGetCflags("libserialport")
-
-# static linkage
-env.Append(LIBS = File("../libs/libserialport/install/lib/libserialport.a"))
 
 conf = env.Configure()
 
@@ -20,4 +11,6 @@ if conf.CheckDeclaration("WIN32"):
 
 env = conf.Finish()
 
-prog = env.Program("serial", ["main.cpp"])
+env.Append(CCFLAGS = ["-Isrc/libs/libserialport"])
+
+prog = env.Program("serial", ["main.cpp", libserialport])

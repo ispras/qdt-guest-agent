@@ -1,0 +1,34 @@
+Import("env")
+
+libserialport_env = env.Clone()
+
+libserialport_env.Append(CCFLAGS = ["-DSP_PRIV=", "-DSP_API="])
+
+srcs = [
+    "serialport.c",
+    "timing.c",
+]
+
+libserialport_env.Append(CCFLAGS = ["-I" + Dir("libserialport").abspath])
+conf = libserialport_env.Configure(config_h = "libserialport/config.h")
+
+# https://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x-ios-linux-windows-in-c-preprocessor
+if conf.CheckDeclaration("WIN32"):
+    srcs.extend([
+        "windows.c"
+    ])
+    conf.env.Append(LIBS = ["-lhid", "-lsetupapi"])
+elif conf.CheckDeclaration("__linux__"):
+    srcs.extend([
+        "linux.c",
+        "linux_termios.c"
+    ])
+# TODO: for MACOSX & FREEBSD according to Makefile.am
+
+libserialport_env = conf.Finish()
+
+libserialport = libserialport_env.StaticLibrary("libserialport",
+    list(("libserialport/" + src) for src in srcs)
+)
+
+Export("libserialport")

@@ -1,4 +1,12 @@
-Import('env')
+Import("env")
+
+# Libs first because they do `Export`.
+SConscript(
+    exports = ["env"],
+    dirs = [
+        "libs",
+    ]
+)
 
 SConscript(
     exports = ["env"],
