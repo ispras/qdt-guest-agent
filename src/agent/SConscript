@@ -1,0 +1,16 @@
+Import("env")
+Import("libserialport")
+
+env = env.Clone()
+
+conf = env.Configure()
+
+if conf.CheckDeclaration("WIN32"):
+    # for libserialport
+    conf.env.Append(LIBS = ["-lhid", "-lsetupapi"])
+
+env = conf.Finish()
+
+env.Append(CCFLAGS = ["-Isrc/libs/libserialport"])
+
+prog = env.Program("agent", ["main.cpp", libserialport])

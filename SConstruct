@@ -3,7 +3,7 @@ from os import (
 )
 
 base_env = DefaultEnvironment().Clone(
-    LINKFLAGS = ["-static-libgcc"]
+    LINKFLAGS = ["-static-libgcc", "-static-libstdc++"]
 )
 base_env.Append(ENV = dict(
     PATH = environ["PATH"],

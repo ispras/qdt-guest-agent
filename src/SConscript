@@ -13,5 +13,6 @@ SConscript(
     dirs = [
         "simple",
         "serial",
+        "agent",
     ]
 )
