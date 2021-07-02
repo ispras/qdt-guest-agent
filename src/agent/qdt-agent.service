@@ -1,0 +1,11 @@
+[Unit]
+; it's actually default type
+; TODO: Type=simple
+Type=oneshot
+Description=QDT Agent
+After=default.target
+[Service]
+ExecStart=agent
+; TODO: Restart=always
+[Install]
+WantedBy=default.target
