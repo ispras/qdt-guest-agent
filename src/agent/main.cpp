@@ -8,6 +8,21 @@
 
 using namespace std;
 
+struct QDTAgentServer {
+    struct sp_port *port;
+
+    QDTAgentServer(struct sp_port *port): port(port) {};
+
+    void main(void);
+    void start(void);
+};
+
+
+void QDTAgentServer::start(void)
+{
+
+}
+
 int check(enum sp_return result);
 
 #define QDT_AGENT_VERSION 1
