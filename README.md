@@ -39,3 +39,17 @@ Copy `agent/build/linux-[actual arch]/agent` into `/usr/bin`.
 Launch guest and run `sudo systemctl enable qdt-agent.service`.
 
 See `man systemd.service`.
+
+#### buildroot
+
+When generating a Linux workload with [buildroot](https://buildroot.org/),
+root file system overlay mechanism can be used to setup those files
+(look buildroot documentation for `BR2_ROOTFS_OVERLAY`).
+
+Hints...
+
+- Use glibc as `BR2_TOOLCHAIN_BUILDROOT_LIBC`
+- Enable `BR2_INIT_SYSTEMD=y`.
+- `BR2_ROOTFS_MERGED_USR=y`
+- `BR2_TARGET_ROOTFS_EXT2_SIZE` is required to be increased likely.
+- `systemctl` command is not required.
